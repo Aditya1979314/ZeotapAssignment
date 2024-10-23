@@ -1,7 +1,7 @@
 
 import './App.css';
 import { Navbar } from './Components/Navbar';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route,Routes, Navigate} from 'react-router-dom';
 import DayPage from './Pages/DayPage';
 import HourPage from './Pages/HourPage';
 import WeekPage from './Pages/WeekPage';
@@ -22,6 +22,7 @@ const[temp,settemp] = useState('metric')
     <BrowserRouter>
     <Navbar location={location} setlocation={setlocation}/>
     <Routes>
+    <Route path="*" element={<Navigate to="/page" />} />
       <Route default path="/page" element={<DayPage location={location} settemp={settemp} temp={temp}/>}/>
       <Route path="/hour" element={<HourPage location={location} settemp={settemp} temp={temp}/>}/>
       <Route path='/week' element={<WeekPage location={location} settemp={settemp} temp={temp}/>}/>
