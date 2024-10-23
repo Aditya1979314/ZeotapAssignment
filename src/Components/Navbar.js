@@ -16,6 +16,7 @@ async function onsubmithandler(){
             city:result[0].name,
             state:result[0].state
         })
+        localStorage.setItem('location',location)
     }else{
         alert("Incorrect address");
     }

@@ -29,11 +29,13 @@ export function Sidefilter({isdaypage,temp,settemp,setthresholdtemp,setthreshold
                     <div>
                     <p className="text-lg font-semibold">Thresholds</p>
                         <div className="mb-2">
+                            <p>Temperature</p>
                             <input placeholder="temperature threshold" className="p-2 border border-black" onChange={(e)=>{
                                 setthresholdtemp(e.target.value)
                             }}/>
                         </div>
                         <div>
+                            <p>Weather Condition</p>
                             <input placeholder="Weather condition" className="p-2 border border-black" onChange={(e)=>{
                                 setthresholdweather(e.target.value)
                             }}/>

@@ -14,7 +14,7 @@ function formatDate(dateString) {
         "July", "August", "September", "October", "November", "December"
     ];
 
-    const [ month, day] = dateString.split('-');
+    const [year,month, day] = dateString.split('-');
     const monthName = months[parseInt(month) - 1]; // Convert month number to month name
 
     return `${day} ${monthName}`;

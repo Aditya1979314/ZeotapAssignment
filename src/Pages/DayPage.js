@@ -1,15 +1,17 @@
 import { DayCard } from '../Components/DayCard';
 import { SummaryCard } from '../Components/SummaryCard';
 import { Sidefilter } from '../Components/SideFilter';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 
 
 
 export default function DayPage({location,settemp,temp}){ 
 const[currentWeather,setcurrentWeather] = useState({});
 const[summary,setsummary] = useState({})
-const[thresholdtemp,setthresholdtemp] = useState();
-const[thresholdweather,setthresholdweather] = useState();
+const[thresholdtemp,setthresholdtemp] = useState(0);
+const[thresholdweather,setthresholdweather] = useState('');
+
+
 
 function getdateandmonth(date){
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -23,6 +25,20 @@ return {
 }
 }
 
+useEffect(()=>{
+    function checkthreshold(){
+        if(thresholdtemp == currentWeather.temp){
+            alert("temperature threshold")
+            setthresholdtemp(0);
+        }
+
+        if(thresholdweather === summary.weather){
+            alert('weather threshold')
+            setthresholdweather('');
+        }
+    }
+    checkthreshold()
+},[thresholdtemp,thresholdweather,currentWeather,summary])
 
 useEffect(()=>{
 async function fetchdailydata(){
