@@ -64,7 +64,14 @@ async function fetchdailydata(){
         icon:result.weather[0].icon
     })
 }
+
+const intervalId = setInterval(() => {
+    fetchdailydata();
+}, 300000);
+
 fetchdailydata()
+
+return () => clearInterval(intervalId);
 },[location,temp])
 
 
