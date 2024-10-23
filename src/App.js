@@ -1,19 +1,30 @@
-import logo from './logo.svg';
+
 import './App.css';
 import { Navbar } from './Components/Navbar';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import DayPage from './Pages/DayPage';
 import HourPage from './Pages/HourPage';
 import WeekPage from './Pages/WeekPage';
+import { useState } from 'react';
 
 function App() {
-  return (<div className='bg-gray-100 h-screen relative'>
+const [location,setlocation] = useState({
+  lat:18.5204,
+  lon:73.8567,
+  city:'Pune',
+  state:"Maharashtra"
+});
+
+const[temp,settemp] = useState('metric')
+
+
+  return (<div className='bg-gray-100 h-full relative'>
     <BrowserRouter>
-    <Navbar location={{city:'Jamshedpur',state:'Jharkhand'}} temp={{temp:'kelvin'}}/>
+    <Navbar location={location} setlocation={setlocation}/>
     <Routes>
-      <Route path="/page" element={<DayPage/>}/>
-      <Route path="/hour" element={<HourPage/>}/>
-      <Route path='/week' element={<WeekPage/>}/>
+      <Route default path="/page" element={<DayPage location={location} settemp={settemp} temp={temp}/>}/>
+      <Route path="/hour" element={<HourPage location={location} settemp={settemp} temp={temp}/>}/>
+      <Route path='/week' element={<WeekPage location={location} settemp={settemp} temp={temp}/>}/>
     </Routes>
     </BrowserRouter>
 

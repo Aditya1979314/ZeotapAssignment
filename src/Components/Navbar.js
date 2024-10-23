@@ -1,8 +1,28 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 
 
-export function Navbar({location,temp}){
+export function Navbar({location,setlocation}){
+const[inputdata,setinputdata] = useState();
+
+async function onsubmithandler(){
+    const response = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${inputdata}&limit=5&appid=${process.env.REACT_APP_API_ID}`);
+    const result = await response.json();
+    if(result.length){
+        setlocation({
+            lat:result[0].lat,
+            lon:result[0].lon,
+            city:result[0].name,
+            state:result[0].state
+        })
+    }else{
+        alert("Incorrect address");
+    }
+ 
+    
+}
+
 return (
     <div>
     <div className="bg-black flex justify-around items-center py-4">
@@ -13,8 +33,10 @@ return (
             </div>
         </div>
         <div>
-            <input className="mr-2 px-2 py-1" placeholder="Search by city and state"/>
-            <button className="bg-sky-400 px-2 py-1 rounded text-white hover:bg-sky-300">Search</button>
+            <input className="mr-2 px-2 py-1" placeholder="Search by city and state" onChange={(e)=>{
+                setinputdata(e.target.value);
+            }}/>
+            <button className="bg-sky-400 px-2 py-1 rounded text-white hover:bg-sky-300" onClick={onsubmithandler}>Search</button>
         </div>
     </div>
 
