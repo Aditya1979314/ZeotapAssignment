@@ -2,6 +2,10 @@
 
 The project used open weather api [open weather](https://openweathermap.org/current) and open meteo api [open meteo](https://open-meteo.com/en/docs).
 
+## Tech Stack
+
+1. React
+
 ## Some snapshots and video of project
 
 ![Main page](https://github.com/Aditya1979314/ZeotapAssignment/blob/083a6156e5c03150a7dffdeb9d9b4977a7f55657/src/assests/image-1.png)
